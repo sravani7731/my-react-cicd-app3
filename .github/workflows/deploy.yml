@@ -1,4 +1,4 @@
-name: Deploy React App to Ubuntu Server
+name: Deploy React App
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Checkout Code
@@ -24,13 +24,7 @@ jobs:
       - name: Build React App
         run: npm run build
 
-      - name: Deploy to Ubuntu Server
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.SERVER_IP1 }}
-          username: ${{ secrets.SERVER_USER1 }}
-          key: ${{ secrets.SSH_PRIVATE_KEY1 }}
-          port: 22
-          source: "build/*"
-          target: "/var/www/my-react-app"
-          strip_components: 1
+      - name: Copy Build Files
+        run: |
+          sudo mkdir -p /var/www/my-react-app
+          sudo cp -r build/* /var/www/my-react-app/
