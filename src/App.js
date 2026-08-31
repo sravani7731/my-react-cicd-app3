@@ -1,4 +1,5 @@
 import React from 'react';
+import logo from './logo.svg';
 
 function App() {
   return (
@@ -7,7 +8,7 @@ function App() {
       <p>Deployed automatically via GitHub Actions CI/CD to Ubuntu Server.</p>
       <br />
       <img 
-        src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" 
+        src={logo} 
         alt="React Logo" 
         style={{ width: '200px', height: '200px' }} 
       />
